@@ -1,11 +1,11 @@
 # Basic
 title: Fynil
-subtitle: 又不是不能用🐶
-welcome_message: <a href="https://github.com/fynil" target="_blank">Fynil</a>
-description: 懒癌晚期的夜猫子，写不出好程序的码农，唱不上高音，学不会吉他指弹的音乐爱好者 ，暂时在开发 iOS，💊
+subtitle: Stay Lazy
+welcome_message: <a href="http://fynil.cn" target="_blank">@Fynil's Blog</a>
+description: 哈喽，我是林运芳（@Fynil），是懒癌晚期的夜猫子，写不出好APP的代码搬运工，唱不上高音，学不会吉他指弹的音乐爱好者 ，暂时在开发 iOS，💊
 creator: <a href="http://fynil.cn">@Fynil</a>
 
-url: "https://github.com/Fynil"
+url: "http://fynil.cn"
 
 permalink: /:year/:month/:title/
 
@@ -13,7 +13,7 @@ permalink: /:year/:month/:title/
 highlighter: rouge
 
 # supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
-cover_color: 
+cover_color:
 
 # The blog button should not be removed.
 blog_button:
@@ -22,7 +22,7 @@ blog_button:
 
 # Navigation buttons in the front page.
 nav:
-    - {title: 关于, description: My Projects, url: 'http://github.com/fynil'}
+    - {title: 关于, description: My Projects, url: 'https://github.com/fynil'}
     # - {title: Another Button, description: A button, url: 'http://example.com'}
 
 # Pagination
