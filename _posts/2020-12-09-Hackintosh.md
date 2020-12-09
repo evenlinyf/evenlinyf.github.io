@@ -107,25 +107,25 @@ Then run with either `./MountEFI.command` or by double-clicking *MountEFI.comman
 
 ### 4. 截图 Screenshoot
 
-![AboutHackintosh](./Assets/AboutHackintosh.png)
+![AboutHackintosh](../assets/Assets/AboutHackintosh.png)
 
-![CPUScore](./Assets/HackintoshCPUScore.png)
+![CPUScore](../assets/Assets/HackintoshCPUScore.png)
 
-![](./Assets/HackintoshOpenCLScore.png)
+![](../assets/Assets/HackintoshOpenCLScore.png)
 
-![Hackintosh Metal Score](./Assets/Hackintosh Metal Score.png)
-
-
-
-![CINEBENCH-CPU-SingleCore](./Assets/CINEBENCH-CPU-SingleCore.png)
+![Hackintosh Metal Score](../assets/Assets/Hackintosh Metal Score.png)
 
 
 
-![CINEBENCH-CPU-MultiCore](./Assets/CINEBENCH-CPU-MultiCore.png)
+![CINEBENCH-CPU-SingleCore](../assets/Assets/CINEBENCH-CPU-SingleCore.png)
 
 
 
-![970EVOPlus](./Assets/970EVOPlus.png)
+![CINEBENCH-CPU-MultiCore](../assets/Assets/CINEBENCH-CPU-MultiCore.png)
+
+
+
+![970EVOPlus](../assets/Assets/970EVOPlus.png)
 
 
 
