@@ -50,9 +50,11 @@ Then run with either `./GenSMBIOS.command` or by double-clicking *GenSMBIOS.comm
 
 #### 1. EFI分区
 
-[MountEFI](https://github.com/corpnewt/MountEFI)
+为了创建EFI分区， 需要使用 [MountEFI](https://github.com/corpnewt/MountEFI) ， 使用这个工具可以为一个磁盘创建一个EFI分区。
 
-Do the following one line at a time in Terminal:
+安装系统前，需要为优盘创建EFI分区，最后将配置好的EFI文件夹复制到这个分区里； 安装系统后需要为Mac系统盘创建EFI分区， 并将优盘EFI分区里的EFI文件夹复制到Mac系统盘的EFI分区里， 这样就不用依赖优盘去引导macOS。注意⚠️：重启或者插拔优盘都会是EFI分区“消失”， 需要重新运行Mount.command创建（使其显示）EFI分区
+
+打开终端， 复制以下代码 Do the following one line at a time in Terminal:
 
     git clone https://github.com/corpnewt/MountEFI
     cd MountEFI
@@ -107,25 +109,25 @@ Then run with either `./MountEFI.command` or by double-clicking *MountEFI.comman
 
 ### 4. 截图 Screenshoot
 
-![AboutHackintosh](../assets/Assets/AboutHackintosh.png)
+![AboutHackintosh](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/AboutHackintosh.png?raw=true)
 
-![CPUScore](../assets/Assets/HackintoshCPUScore.png)
+![CPUScore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/HackintoshCPUScore.png?raw=true)
 
-![](../assets/Assets/HackintoshOpenCLScore.png)
+![](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/HackintoshOpenCLScore.png?raw=true)
 
-![Hackintosh Metal Score](../assets/Assets/Hackintosh Metal Score.png)
-
-
-
-![CINEBENCH-CPU-SingleCore](../assets/Assets/CINEBENCH-CPU-SingleCore.png)
+![Hackintosh Metal Score](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/Hackintosh Metal Score.png?raw=true)
 
 
 
-![CINEBENCH-CPU-MultiCore](../assets/Assets/CINEBENCH-CPU-MultiCore.png)
+![CINEBENCH-CPU-SingleCore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/CINEBENCH-CPU-SingleCore.png?raw=true)
 
 
 
-![970EVOPlus](../assets/Assets/970EVOPlus.png)
+![CINEBENCH-CPU-MultiCore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/CINEBENCH-CPU-MultiCore.png?raw=true)
+
+
+
+![970EVOPlus](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/970EVOPlus.png?raw=true)
 
 
 
