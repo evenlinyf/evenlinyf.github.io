@@ -9,7 +9,7 @@ tags: iOS
 
 # Hackintosh-EFI-Z490A-i710700k-5700xt
 
-> 当前OpenCore版本 0.6.4
+> 当前OpenCore版本 0.6.4, EFI文件地址在我的[GitHub](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)
 
 - 2020年12月17日：已直升macOS11.1, 暂时没什么问题
 
@@ -85,8 +85,6 @@ Then run with either `./MountEFI.command` or by double-clicking *MountEFI.comman
 
 ⚠️ **增减ACPI、Drivers和Kexts的文件时， 需要在Config.plist相对应的位置做相应增减**
 
-如果需要界面美化， 需要将Resources文件夹放到OC根目录下
-
 | EFI - OC | Config.plist - Root |
 | -------- | ------------------- |
 | ACPI     | ACPI - Add          |
@@ -133,7 +131,28 @@ Then run with either `./MountEFI.command` or by double-clicking *MountEFI.comman
 
 
 
-## 5. Trouble Shooting 问题解决
+## 5. 启动界面美化
+
+OpenCore自带的界面我是比较难以接受的， 所以按照OpenCore官方教程美化了一下界面， 只要两步：
+
+1. 首先需要将[Resources文件夹](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)放到OC根目录下， 这个目录文件都是美化界面所需的音频、字体、图像等资源。
+
+2. 在EFI/Drivers添加OpenCanopy.efi ， 同时在config.plist - UEFI - Drivers 中添加一个 item
+
+这样界面基本就比较好看了， 但是因为本人比较强迫症， 除了Win和mac的启动项外， 其他的都想要隐藏， 比如Recovery， OpenShell, ResetNvram， 查了一些资料， 只需在Config.plist中按照以下配置即可
+
+- 隐藏Recovery
+  - Misc - Boot - HideAuxiliary 设置为 1
+- 隐藏OpenShell.efi
+  - Misc - Tools 找到OpenShell.efi 这个item, 在item里将 Auxiliary 设置为1
+- 隐藏ResetNvram
+  - Misc - Security - AllowNvramReset 设置为 0
+- 进入默认磁盘等待时间
+  - Misc - Boot - Timeout 默认为5秒， 我这里改成了 3秒， 给我蓝牙键盘反应是够了吧😂
+
+
+
+## 6. Trouble Shooting 问题解决
 
 #### 1. 4K 60Hz
 
@@ -147,6 +166,8 @@ Then run with either `./MountEFI.command` or by double-clicking *MountEFI.comman
 
 #### 2. 核显驱动
 
+> 先说结果， 暂时无法驱动
+
 i7-10700K核显是 **Intel UHD 630**
 
 按照OpenCore官方的配置
@@ -156,6 +177,18 @@ AAPL,ig-platform-id
 <0300C89B>
 
 貌似并没有驱动
+
+
+
+在网上看到以下三步
+
+* 去除platformid
+
+* 更新whatEverGreen
+
+* boot-args增加igfxfw=2
+
+  貌似也并不行😤
 
 
 
@@ -198,11 +231,21 @@ Asus ROG STRIX Z490-A Gaming 吹雪使用的是 **ROG SupremeFX 8** 声卡芯片
 1. 设置EFI文件夹 - OC - Config.plist   UEFI - Quirks - RequestBootVarRouting - 1 or YES
 2. 系统偏好设置 - 启动磁盘 - 选择mac磁盘
 
+其实只需要在启动选择页面选中磁盘， 按 ctrl + enter 即可😂
+
 
 
 #### 8 USB Map
 
 Hackintool貌似插拔没反应， 暂时搁置
+
+
+
+#### 9. macOS Windows时间不同步问题
+
+步骤：
+1. win系统里时间同步服务器改为 time.asia.apple.com
+2. 注册表HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\中添加一项数据类型为REG_DWORD,名称为RealTimeIsUniversal,值设为1
 
 
 
