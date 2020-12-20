@@ -7,8 +7,6 @@ tags: iOS
 
 ---
 
-# Hackintosh-EFI-Z490A-i710700k-5700xt
-
 > 当前OpenCore版本 0.6.4, EFI文件地址在我的[GitHub](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)
 
 - 2020年12月17日：已直升macOS11.1, 暂时没什么问题
@@ -25,20 +23,24 @@ tags: iOS
 
 
 
-## 启动盘制作
+## 1. 启动盘制作
 
 - Mac环境
 - 16G优盘
 
-在AppStore下载BigSur， 打开Terminal终端， 输入以下命令
+在AppStore下载BigSur， 打开Terminal终端， 输入以下命令（命令中的USBName就是你插入优盘的优盘名）
 
- `sudo /Applications/Install\ OS\ X\ BigSur.app/Contents/Resources/createinstallmedia --volume /Volumes/优盘名 --applicationpath /Applications/Install\ OS\ X\ BigSur.app —-nointeraction`
+ ```
+sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/USBName --appliationpath /Applications/Install\ macOS\ Big\ Sur.app --nointeraction
+ ```
+
+对于EFI分区的创建， 下面的EFI配置会说明
 
 
 
-## SMBIOS 序列号生成
+## 2. SMBIOS 序列号生成
 
-Do the following one line at a time in Terminal:
+打开Terminal终端， 输入以下命令， Do the following one line at a time in Terminal:
 
     git clone https://github.com/corpnewt/GenSMBIOS
     cd GenSMBIOS
@@ -46,17 +48,24 @@ Do the following one line at a time in Terminal:
 
 Then run with either `./GenSMBIOS.command` or by double-clicking *GenSMBIOS.command*
 
+双击GenSMBIOS.command， 生成SMBIOS
+
+将生成的uuid等信息复制到Config.plist - PlatformInfo对应字段
+
+- MLB 主板序列号
+- SystemProductName iMac20,1等
+- SystemSerialNumber 序列号
+- SystemUUID 
 
 
-## EFI配置
 
-#### 1. EFI分区
+## 3. EFI分区
 
 为了创建EFI分区， 需要使用 [MountEFI](https://github.com/corpnewt/MountEFI) ， 使用这个工具可以为一个磁盘创建一个EFI分区。
 
 安装系统前，需要为优盘创建EFI分区，最后将配置好的EFI文件夹复制到这个分区里； 安装系统后需要为Mac系统盘创建EFI分区， 并将优盘EFI分区里的EFI文件夹复制到Mac系统盘的EFI分区里， 这样就不用依赖优盘去引导macOS。注意⚠️：重启或者插拔优盘都会是EFI分区“消失”， 需要重新运行Mount.command创建（使其显示）EFI分区
 
-打开终端， 复制以下代码 Do the following one line at a time in Terminal:
+打开Terminal终端， 输入以下命令 Do the following one line at a time in Terminal:
 
     git clone https://github.com/corpnewt/MountEFI
     cd MountEFI
@@ -64,9 +73,11 @@ Then run with either `./GenSMBIOS.command` or by double-clicking *GenSMBIOS.comm
 
 Then run with either `./MountEFI.command` or by double-clicking *MountEFI.command*
 
+双击MountEFI.command， 选择对应的磁盘创建EFI分区
 
 
-#### 2. EFI配置
+
+## 4. EFI配置
 
 按照[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html)配置EFI文件
 
@@ -93,7 +104,7 @@ Then run with either `./MountEFI.command` or by double-clicking *MountEFI.comman
 
 
 
-## 3. BIOS启动项配置
+## 5. BIOS启动项配置
 
 禁用
 
@@ -107,52 +118,26 @@ Then run with either `./MountEFI.command` or by double-clicking *MountEFI.comman
 
 
 
-### 4. 截图 Screenshoot
-
-![AboutHackintosh](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/AboutHackintosh.png?raw=true)
-
-![CPUScore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/HackintoshCPUScore.png?raw=true)
-
-![](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/HackintoshOpenCLScore.png?raw=true)
-
-![Hackintosh Metal Score](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/Hackintosh Metal Score.png?raw=true)
-
-
-
-![CINEBENCH-CPU-SingleCore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/CINEBENCH-CPU-SingleCore.png?raw=true)
-
-
-
-![CINEBENCH-CPU-MultiCore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/CINEBENCH-CPU-MultiCore.png?raw=true)
-
-
-
-![970EVOPlus](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/970EVOPlus.png?raw=true)
-
-
-
-## 5. 启动界面美化
+## 6. 启动界面美化
 
 OpenCore自带的界面我是比较难以接受的， 所以按照OpenCore官方教程美化了一下界面， 只要两步：
 
-1. 首先需要将[Resources文件夹](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)放到OC根目录下， 这个目录文件都是美化界面所需的音频、字体、图像等资源。
+1. 首先需要将[Resources文件夹](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)放到OC根目录下， 这个目录文件都是美化界面所需的音频、字体、图像等资源。这里的Resource文件夹是OpenCore Desktop Guide中 macOS BigSur 风格的启动界面资源
 
-2. 在EFI/Drivers添加OpenCanopy.efi ， 同时在config.plist - UEFI - Drivers 中添加一个 item
+2. 在EFI/Drivers添加OpenCanopy.efi ， 同时在config.plist - UEFI - Drivers 中添加一个 item
 
 这样界面基本就比较好看了， 但是因为本人比较强迫症， 除了Win和mac的启动项外， 其他的都想要隐藏， 比如Recovery， OpenShell, ResetNvram， 查了一些资料， 只需在Config.plist中按照以下配置即可
 
-- 隐藏Recovery
-  - Misc - Boot - HideAuxiliary 设置为 1
-- 隐藏OpenShell.efi
-  - Misc - Tools 找到OpenShell.efi 这个item, 在item里将 Auxiliary 设置为1
-- 隐藏ResetNvram
-  - Misc - Security - AllowNvramReset 设置为 0
-- 进入默认磁盘等待时间
-  - Misc - Boot - Timeout 默认为5秒， 我这里改成了 3秒， 给我蓝牙键盘反应是够了吧😂
+| 要隐藏的启动项       | Config.plist设置                                             |
+| -------------------- | ------------------------------------------------------------ |
+| Recovery             | Misc - Boot - HideAuxiliary 设置为 1                         |
+| OpenShell.efi        | Misc - Tools 找到OpenShell.efi 这个item, 在item里将 Auxiliary 设置为1 |
+| ResetNvram           | Misc - Security - AllowNvramReset 设置为 0                   |
+| 进入默认磁盘等待时间 | Misc - Boot - Timeout 默认为5秒， 我这里改成了 3秒， 给我蓝牙键盘反应是够了吧😂 |
 
 
 
-## 6. Trouble Shooting 问题解决
+## 7. Trouble Shooting 问题解决
 
 #### 1. 4K 60Hz
 
@@ -228,8 +213,9 @@ Asus ROG STRIX Z490-A Gaming 吹雪使用的是 **ROG SupremeFX 8** 声卡芯片
 
 #### 7. 更改默认启动磁盘
 
-1. 设置EFI文件夹 - OC - Config.plist   UEFI - Quirks - RequestBootVarRouting - 1 or YES
-2. 系统偏好设置 - 启动磁盘 - 选择mac磁盘
+- 设置EFI文件夹 - OC - Config.plist   UEFI - Quirks - RequestBootVarRouting - 1 or YES
+
+- 系统偏好设置 - 启动磁盘 - 选择mac磁盘
 
 其实只需要在启动选择页面选中磁盘， 按 ctrl + enter 即可😂
 
@@ -243,13 +229,12 @@ Hackintool貌似插拔没反应， 暂时搁置
 
 #### 9. macOS Windows时间不同步问题
 
-步骤：
-1. win系统里时间同步服务器改为 time.asia.apple.com
-2. 注册表HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\中添加一项数据类型为REG_DWORD,名称为RealTimeIsUniversal,值设为1
+- Windows系统里时间同步服务器改为 time.asia.apple.com
+- 注册表HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\中添加一项数据类型为REG_DWORD,名称为RealTimeIsUniversal,值设为1
 
 
 
-## 参考链接
+## 8. 参考链接
 
 装黑苹果的过程中， 一下链接给了很大帮助， 感谢！ Thanksssss 
 
@@ -259,8 +244,26 @@ Hackintool貌似插拔没反应， 暂时搁置
 
 [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html)
 
+[OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/)
+
 [Hackintool](https://github.com/headkaze/Hackintool)
 
-[使用 OpenCore 引导黑苹果 - Xjn’s Blog](https://blog.xjn819.com/post/opencore-guide.html)
+[Xjn’s Blog](https://blog.xjn819.com/)
 
-[RTC综述 - Xjn’s Blog](https://blog.xjn819.com/post/rtc-issues-related-to-oc.html)
+
+
+### 9. 截图 Screenshoot
+
+![AboutHackintosh](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/AboutHackintosh.png?raw=true)
+
+![CPUScore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/HackintoshCPUScore.png?raw=true)
+
+![](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/HackintoshOpenCLScore.png?raw=true)
+
+![Hackintosh Metal Score](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/Hackintosh Metal Score.png?raw=true)
+
+![CINEBENCH-CPU-SingleCore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/CINEBENCH-CPU-SingleCore.png?raw=true)
+
+![CINEBENCH-CPU-MultiCore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/CINEBENCH-CPU-MultiCore.png?raw=true)
+
+![970EVOPlus](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/970EVOPlus.png?raw=true)
