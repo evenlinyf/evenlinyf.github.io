@@ -229,8 +229,11 @@ Hackintool貌似插拔没反应， 暂时搁置
 
 #### 9. macOS Windows时间不同步问题
 
-- Windows系统里时间同步服务器改为 time.asia.apple.com
-- 注册表HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\中添加一项数据类型为REG_DWORD,名称为RealTimeIsUniversal,值设为1
+搜索cmd， 找到命令提示符， **以管理员身份运行**， 输入以下代码：
+
+```
+Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1
+```
 
 
 
