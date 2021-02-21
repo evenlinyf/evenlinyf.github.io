@@ -3,13 +3,14 @@
 layout: post
 title:  "Hackintosh"
 date:   2020-12-09 15:30:50 +80000
-tags: iOS
+tags: hackintosh
 
 ---
 
 > 当前OpenCore版本 0.6.4, EFI文件地址在我的[GitHub](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)
 
-- 2020年12月17日：已直升macOS11.1, 暂时没什么问题
+- 2021年02月21日：已直升macOS11.2.1
+- 2020年12月17日：已直升macOS11.1
 
 ## 本机配置
 
@@ -31,7 +32,7 @@ tags: iOS
 在AppStore下载BigSur， 打开Terminal终端， 输入以下命令（命令中的USBName就是你插入优盘的优盘名）
 
  ```
-sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/USBName --appliationpath /Applications/Install\ macOS\ Big\ Sur.app --nointeraction
+sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
  ```
 
 对于EFI分区的创建， 下面的EFI配置会说明
