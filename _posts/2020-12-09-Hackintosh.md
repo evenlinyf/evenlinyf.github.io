@@ -7,10 +7,9 @@ tags: hackintosh
 
 ---
 
-> 当前OpenCore版本 0.6.4, EFI文件地址在我的[GitHub](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)
+> 当前OpenCore版本 0.6.6, EFI文件地址在我的[GitHub](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)
 
-- 2021年02月21日：已直升macOS11.2.1
-- 2020年12月17日：已直升macOS11.1
+- 2021年02月27日：已直升macOS11.2.2
 
 ## 本机配置
 
