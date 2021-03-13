@@ -3,9 +3,6 @@ layout: post
 title:  "Hackintosh"
 date:   2020-12-09 15:30:50 +80000
 tags: hackintosh
-
-
-
 ---
 
 > 当前OpenCore版本 0.6.6, EFI文件地址在我的[GitHub](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)， 具体过程可以参考[Blog](https://fynil.cn/2020/12/Hackintosh/)
