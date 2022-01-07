@@ -1,11 +1,11 @@
 # Basic
 title: Even Lin
 subtitle: 我继续
-welcome_message: <a href="http://fynil.cn" target="_blank">@EvenLin's Blog</a>
+welcome_message: <a href="http://evenlinyf.github.io" target="_blank">@EvenLin's Blog</a>
 description: 哈喽，I AM Even Lin，来自杭州的 iOS Developer，还是懒癌晚期的夜猫子，唱不上高音，学不会吉他指弹的音乐爱好者。呵，💊
-creator: <a href="http://fynil.cn">@EvenLin</a>
+creator: <a href="http://evenlinyf.github.io">@EvenLin</a>
 
-url: "http://fynil.cn"
+url: "http://evenlinyf.github.io"
 
 permalink: /:year/:month/:title/
 
