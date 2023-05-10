@@ -4,31 +4,27 @@ title:  "Hackintosh"
 date:   2020-12-09 15:30:50 +80000
 tags: hackintosh
 ---
-> OpenCore 0.7.9， macOS Monterey 12.2.1
 
-## ChangeLog
+> OpenCore 0.9.2， macOS Ventura 13.3.1
 
-### 2022-03-10 
-Update OpenCore 0.7.9, Update macOS Monterey 12.2.1
-⚠️ FakePCI*.kext may cause reboot in macOS 12, just remove all the FakePCI*.kext, and add `dk.e1000=0` at the boot-args, thank you [@CharlesCCC](https://github.com/CharlesCCC) for the [issue](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/issues/1#issue-1035692471)
+![AboutHackintosh](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/AboutHackintosh.png?raw=true)
 
-### 2021-08-24
-Update OpenCore 0.7.2， Finish USB Mapping， Update macOS Big Sur 11.5.2
+[EFI-GitHub](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt)
 
-## 关于本机
+## About My PC
 
 | Type        | Detail                                         |
 | ----------- | ---------------------------------------------- |
 | CPU         | Intel i7 10700K                                |
-| GPU         | Sapphire AMD RX 5700XT 8GB超白金               |
-| MotherBoard | Asus ROG STRIX Z490-A Gaming 吹雪              |
-| RAM         | 32G GSkill Trident Z Royal 3200MHz DDR4 16 * 2 |
+| GPU         | Sapphire AMD RX 5700XT 8GB 超白金                |
+| MotherBoard | Asus ROG STRIX Z490-A Gaming 吹雪               |
+| RAM         | 32G GSkill Trident Z Royal 3200MHz DDR4 16 two |
 | SSD         | Samsung NVMe 970 EVO Plus 500GB                |
-| Wireless Card    | BCM94360CD                                     |
+| Wireless Card  | BCM94360CD                                  |
 
 
 
-## 1. 制作启动盘
+## 1. Make Bootable USB
 
 - Mac Environment
 - 16G USB Drive
@@ -42,8 +38,6 @@ sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstall
 
 
 ## 2. SMBIOS 
-
-> [SMBIOS](https://github.com/corpnewt/GenSMBIOS)
 
 Do the following one line at a time in Terminal:
 
@@ -68,9 +62,11 @@ Then run with either `./GenSMBIOS.command` or by double-clicking *GenSMBIOS.comm
 
 ## 3. EFI分区
 
-为了创建EFI分区，需要使用 [MountEFI](https://github.com/corpnewt/MountEFI) ， 使用这个工具可以为一个磁盘创建一个EFI分区。（或者直接使用[Hackintool](https://github.com/headkaze/Hackintool) 磁盘那里创建）
+为了创建EFI分区，需要使用 [MountEFI](https://github.com/corpnewt/MountEFI) 
 
-安装系统前，需要为优盘创建EFI分区，最后将配置好的EFI文件夹复制到这个分区里； 安装系统后需要为Mac系统盘创建EFI分区， 并将优盘EFI分区里的EFI文件夹复制到Mac系统盘的EFI分区里， 这样就不用依赖优盘去引导macOS。注意⚠️：重启或者插拔优盘都会是EFI分区“消失”， 需要重新运行Mount.command创建（使其显示）EFI分区
+> 使用这个工具可以为一个磁盘创建一个EFI分区。（或者直接使用hackintool 磁盘那里创建）
+
+安装系统前，需要为优盘创建EFI分区，最后将配置好的EFI文件夹复制到这个分区里； 安装系统后需要为Mac系统盘创建EFI分区， 并将优盘EFI分区里的EFI文件夹复制到Mac系统盘的EFI分区里， 这样就不用依赖优盘去引导macOS。注意⚠️：重启或者插拔优盘都会使EFI分区“消失”， 需要重新运行Mount.command创建（使其显示）EFI分区
 
 打开Terminal终端， 输入以下命令 Do the following one line at a time in Terminal:
 
@@ -87,7 +83,8 @@ Then run with either `./MountEFI.command` or by double-clicking *MountEFI.comman
 ## 4. EFI Configuration
 
 按照[OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/prerequisites.html)配置EFI文件
-sometimes with [OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/)
+
+[OpenCore Post-Install](https://dortania.github.io/OpenCore-Post-Install/)
 
 **因为本机是华硕主板， 所以ACPI需要加入一个SSDT-RHUB.aml, 否则安装会失败**
 
@@ -158,10 +155,15 @@ OpenCore自带的界面我是比较难以接受的， 所以按照OpenCore官方
 
 
 #### 2. 有线网络 Intel-I225-V
+macOS 13.1
+* 在ACPI中添加 SSDT-I225V.aml
+* 在Drivers中添加 AppleIntel210Ethernet.kext (从macOS monterey 12.6 下载的， 放心使用)
+* boot-arg `dk.e1000=0`  改为  `e1000=0`
 
+@Deprecated (macOS 13)
 after macOS 12， just remove all the FakePCI*.kext, and add boot-args with `dk.e1000=0`
 
-@Deprecated macOS 12 
+@Deprecated (macOS 12) 
 Asus ROG STRIX Z490-A Gaming 吹雪主板自带的有线网卡是**Intel-I225-V**
 
 按照OpenCore官方在Config.plist - DeviceProperties 中添加device-id <F2150000>并没有作用
@@ -224,10 +226,7 @@ Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsU
 ```
 
 
-
 ### 9. 截图 Screenshoots
-
-![AboutHackintosh](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/AboutHackintosh.png?raw=true)
 
 ![CPUScore](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/HackintoshCPUScore.png?raw=true)
 
@@ -236,4 +235,3 @@ Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsU
 ![Hackintosh Metal Score](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/HackintoshMetalScore.png?raw=true)
 
 ![970EVOPlus](https://github.com/evenlinyf/hackintosh-EFI-Z490A-i710700k-5700xt/blob/main/Assets/970EVOPlus.png?raw=true)
-
