@@ -64,3 +64,16 @@
   }
 
 }
+
+.surge-guide {
+  .surge-guide-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4em 1em;
+    margin-bottom: 1.5em;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+}
