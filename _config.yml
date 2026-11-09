@@ -22,6 +22,7 @@ blog_button:
 
 # Navigation buttons in the front page.
 nav:
+    - {title: Surge API Debug, description: Surge API Debug 使用指南, url: '/surge-api-debug/'}
     # - {title: 关于, description: My Projects, url: 'https://github.com/fynil'}
     # - {title: Another Button, description: A button, url: 'http://example.com'}
 
